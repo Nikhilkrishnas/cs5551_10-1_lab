@@ -21,14 +21,14 @@
     <script>
         var app=angular.module("homepage",[]);
         app.controller("homepageapis",function ($scope,$http) {
-            $scope.getresult=function (searchitem) {
-                $http.get('https://kgsearch.googleapis.com/v1/entities:search?query='+searchitem+'&key=AIzaSyBmSS1EEgf6gA1gN6ms9DZ5jkn9yp1hpsQ&limit=1&indent=True').success(function (data) {
-                    $scope.heading=data.itemListElement[0].result.name;
-                    $scope.desc=data.itemListElement[0].result.description;
-                    $scope.imgloc=data.itemListElement[0].result.image.contentUrl;
-                    $scope.detaileddesc=data.itemListElement[0].result.detailedDescription.articleBody;
+            $scope.getresult=function (search) {
+                $http.get('https://kgsearch.googleapis.com/v1/entities:search?query='+search+'&key=AIzaSyBmSS1EEgf6gA1gN6ms9DZ5jkn9yp1hpsQ&limit=1&indent=True').success(function (data) {
+                    $scope.name=data.itemListElement[0].result.name;
+                    $scope.descpt=data.itemListElement[0].result.description;
+                    $scope.imglurl=data.itemListElement[0].result.image.contentUrl;
+                    $scope.ddesc=data.itemListElement[0].result.detailedDescription.articleBody;
                     $scope.moreinfo=data.itemListElement[0].result.detailedDescription.url;
-                    var url = 'http://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=247712b8-c751-4174-8c44-52eaa8e9e82b&password=ERoNDIURwRrI&text='+$scope.searchitem;
+                    var url = 'http://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?username=247712b8-c751-4174-8c44-52eaa8e9e82b&password=ERoNDIURwRrI&text='+$scope.search;
                     document.getElementById("TexttoSpeech").innerHTML= "<audio controls='' autoplay='' name='media'><source src='"+url+"' type='audio/ogg'></audio>";
                     document.getElementById("photo").style="display: block"
                 });
@@ -38,16 +38,16 @@
 </head>
 <body ng-app="homepage" ng-controller="homepageapis">
 <div align="center" class="jumbotron" style="max-width: 800px; alignment: center; text-align-all: center; margin: auto; font-size:20px; border: black; border-width: 10px ">
-    <input type="search"  ng-model="searchitem" placeholder="Search">
-    <button ng-click="getresult(searchitem)"><i class="fab fa-searchengin"></i>Go</button>
+    <input type="search"  ng-model="search" placeholder="Search">
+    <button ng-click="getresult(search)"><i class="fab fa-searchengin"></i>Go</button>
 
 </div>
 <div class="container" style="max-width: 800px; alignment: center; text-align-all: center; margin: auto; ">
-    <h1 ng-bing="heading">{{heading}}</h1>
-    <img id="image" ng-src="{{imgloc}}" style="float: right; margin-right: 15px;"><div id="photo" style=" display: none;">
-    <label><strong>About</strong></label> <p ng-bind="desc">{{desc}}</p><br /><br />
+    <h1 ng-bing="name">{{name}}</h1>
+    <img id="image" ng-src="{{imglurl}}" style="float: right; margin-right: 15px;"><div id="photo" style=" display: none;">
+    <label><strong>About</strong></label> <p ng-bind="descpt">{{descpt}}</p><br /><br />
     <div align="left" id="TexttoSpeech"></div>
-    <label><strong> Detailed Description</strong></label><p ng-bind="detaileddesc" >{{detaileddesc}}</p>
+    <label><strong> Detailed Description</strong></label><p ng-bind="ddesc" >{{ddesc}}</p>
     <label><strong>For more info please go to </strong></label><p ng-bind="moreinfo" >{{moreinfo}}</p>
 
 </div></div>
