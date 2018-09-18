@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta t="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="registerp.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+    <title>Registeration Page</title>
+    <SCRIPT>
+        var app=angular.module('registerApp',[]);
+        app.controller('Registration',function ($scope) {
+            $scope.register=function (name,username,password,password1,phonenum) {
+                if(angular.equals(password,password1)){
+                    var x=[name,username,password,phonenum];
+                    if(username==localStorage.getItem(JSON.stringify(username))){
+                        $scope.userExist="This username has already been taken";
+                    }else{
+                    localStorage.setItem(JSON.stringify(username),JSON.stringify(x));
+                    $scope.correct="Registration Successfull"
+                }}
+                else{
+                    $scope.err="Please check if the passwords match";
+                }
+            }
+            $scope.login=function () {
+                window.location="welcomepage.html";
+            }
+        });
+    </SCRIPT>
+</head>
+<body ng-app="registerApp" ng-controller="Registration">
+<div class="jumbotron" style="max-width: 800px; alignment: center; text-align-all: center; margin: auto; font-size:20px; border: black; border-width: 10px; ">
+    <h2 align="center">Enter the Registration details</h2>
+<div>
+<form id="reg">
+    <fieldset>
+       <h6 align="left"> <label>Name:</label>
+        <input type="text" placeholder="Type FullName" ng-model="name"><br/><br/>
+        <label>Username:</label>
+        <input type="text" placeholder="Type Username" ng-model="username"><br/><br/>
+        <label>Password:</label>
+        <input type="password" placeholder="Type Password" ng-model="password"><br/><br/>
+        <label>Confirm Password:</label>
+        <input type="password" placeholder="Type Password again" ng-model="password1"><br/><br/>
+        <span ng-bind="err"></span>
+           <label>Phone number:</label> <input type="text" placeholder=" Type Phone Number" ng-model="phonenum"><br/><br/>
+       </h6>
+        <input  class="far fa-registere" type="button" value="Register" ng-click="register(name,username,password,password1,phonenum)">
+        <input class="fas fa-sign-in-alt" type="button" value="Log In" ng-click="login()">
+    </fieldset>
+</form>
+</div>
+</div>
+    <span ng-bind="userExist"></span>
+</body>
+</html>

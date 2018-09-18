@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="welcomep.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="569223122851-g2lp9vv4qtsrogm5j643lge0ugjr3gji.apps.googleusercontent.com">
+    <title>Welcome</title>
+    <SCRIPT>
+        var app=angular.module("Login",[]);
+        app.controller("loginValidate",function ($scope) {
+            $scope.Validate=function (username,password) {
+                if(localStorage.getItem(JSON.stringify(username))!=null){
+                    $scope.correct="Sign in Successful";
+                    window.location="Home Page.html";
+                }
+                else{
+                    $scope.correct="please check user name and password";
+                }
+            }
+        });
+        function onSignIn(googleUser) {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut();
+            var profile = googleUser.getBasicProfile();
+            var Username=profile.getName();
+            var email=profile.getEmail();
+            var y=[Username,email];
+            if(localStorage.getItem(Username)==null)
+            localStorage.setItem(JSON.stringify(Username),JSON.stringify(y));
+            window.location="Home Page.html";
+        }
+    </SCRIPT>
+    <style>
+        body  {
+            background-image: url("https://www.amasocial.co.za/drive/news/c1f8742040309b2bf619a9bcd48db60a/MainImage.jpg");
+            background-size: cover;
+        }
+    </style>
+
+</head>
+<body ng-app="Login" ng-controller="loginValidate">
+<div id="fb-root"></div>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : '267581890528577',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v3.1'
+        });
+    };
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=267581890528577&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+function loginfb(){
+    FB.login(function (response) {
+        if(localStorage.getItem(JSON.stringify(response.name))){
+
+        }else{localStorage.setItem(JSON.stringify(response.name)),JSON.stringify(response)}
+window.location="Home Page.html";
+    },{scope: 'public_profile,email'});
+
+}
+</script>
+<div class="jumbotron" style="max-width: 800px; alignment: center; text-align-all: center; margin: auto; font-size:20px; border: black; border-width: 10px ">
+    <h2 align="center">Welcome!</h2>
+<div >
+    <form method="post" class=".container login">
+        <fieldset>
+            <h6>
+            <legend align="center">Please Login to continue</legend>
+        <legend align="center"> <label>Username:</label>
+        <input type="text" placeholder="Type User Name" ng-model="username"><br/><br/>
+        <label>Password:</label>
+        <input type="password" placeholder="Type the password" ng-model="password"><br/><br/>
+        <span ng-bind="correct"></span>
+        <button class="" ng-click="Validate(username,password)">   Sign In</button><br/><br/>
+            <button class="btn btn-primary"  onclick="loginfb()"><i class="fab fa-facebook-square"></i>  Continue with Facebook</button>
+    <br /><br/>
+    <div align="center" class="g-signin2 gmaillog" data-onsuccess="onSignIn"></div>
+        <br />
+      <a href="Registerpage.html">Create a new Account</a></h6>
+        </legend>
+        </fieldset>
+    </form>
+</div>
+</div>
+</body>
+</html>
