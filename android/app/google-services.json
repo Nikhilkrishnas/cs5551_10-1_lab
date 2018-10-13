@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "733653496215",
+    "firebase_url": "https://nikhil-lab-2-ase.firebaseio.com",
+    "project_id": "nikhil-lab-2-ase",
+    "storage_bucket": "nikhil-lab-2-ase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733653496215:android:75d55e94419946d1",
+        "android_client_info": {
+          "package_name": "com.example.thota.lab2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733653496215-fd49n8v3vh7n2138evk2c44pp6nkmjj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3jTdp9gv1KV5ZQciE-Uw5gn8fJYiUHT8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
