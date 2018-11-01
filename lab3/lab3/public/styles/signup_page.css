@@ -1,0 +1,62 @@
+body{
+    background-image: url("https://sos-tn-gov-files.tnsosfiles.com/image-of-blue-register-keyboard-button.jpg");
+            background-size: cover;
+}
+h2,label {
+    text-align: center;
+    font-family: "Courier New";
+}
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+#center_part {
+    width: 40%;
+    height: 100%;
+    float: left;
+    background-color: white;
+    padding-right: 20px;
+    padding-left: 20px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
+
+button {
+    color: white;
+    background-color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#left_part {
+    width: 30%;
+    float: left;
+}
+
+#center_part {
+    width: 40%;
+    float: left;
+}
+
+#right_part {
+    width: 30%;
+    float: right;
+}
